@@ -1,0 +1,12 @@
+{{#each this}}
+    <div class="country__info">
+    <h2>Capital:</h2>
+    <p>{{capital}}</p>
+    <h2> Population:</h2>
+    <p>{{population}}</p>
+    <h2>Languages:</h2>
+    {{#each languages}}
+    <p>{{this}}</p>
+    {{/each}}
+    </div>
+{{/each}}

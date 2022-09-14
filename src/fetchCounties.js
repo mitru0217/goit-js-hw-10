@@ -1,3 +1,5 @@
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
+import 'notiflix/dist/notiflix-3.2.5.min.css';
 const BASE_URL = 'https://restcountries.com/v3.1/name/';
 
 export default function fetchCountries(country) {
