@@ -1,6 +1,5 @@
 import './css/styles.css';
 import cardsList from './templates/cards-list.hbs';
-import cardsInfo from './templates/cards-info.hbs';
 import cards from './templates/cards.hbs';
 import debounce from 'lodash.debounce';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
@@ -10,26 +9,30 @@ import fetchCountries from './fetchCounties';
 const DEBOUNCE_DELAY = 300;
 
 const input = document.querySelector('#search-box');
-const countryList = document.querySelector('.country-list');
-const countryInfo = document.querySelector('.country-info');
+let countryList = document.querySelector('.country-list');
 
 input.addEventListener('input', debounce(onInputChange, DEBOUNCE_DELAY));
 
 function onInputChange(e) {
   e.preventDefault();
-  const country = e.target.value;
-  console.log(country);
-  fetchCountries(country).then(country => {
-    // const markup = cards(country);
-    // console.log(markup);
-
-    const markupList = cardsList(country);
-    console.log(markupList);
-    // const markupInfo = cardsInfo(country);
-    // console.log(markupInfo);
-    countryList.insertAdjacentHTML('beforeend', markupList);
-    // countryInfo.insertAdjacentHTML('beforeend', markupInfo);
+  const inp = e.target.value.trim();
+  fetchCountries(inp).then(country => {
+    if (country.length > 10) {
+      Notify.info(
+        ` Too many matches found. Please enter a more specific name.`
+      );
+    } else if (country.length >= 2) {
+      countryList.innerHTML = cardsList(country);
+    } else {
+      countryList.innerHTML = cards(country);
+    }
   });
+  if (inp == '') {
+    let card = document.querySelectorAll('.country__card');
+    card.forEach(function (key) {
+      key.remove();
+    });
+  }
 }
 // // function createMarkup(obj) {
 // //   console.log(obj);
@@ -67,4 +70,14 @@ function onInputChange(e) {
 // //     </div>`;
 // //     }
 // //   );
+// }
+// function stopFetch() {
+//   let controller = new AbortController();
+
+//   fetch(country, {
+//     signal: controller.signal,
+//   });
+//   if ((country.value = '')) {
+//     controller.abort();
+//   }
 // }

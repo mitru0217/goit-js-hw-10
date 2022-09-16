@@ -15,24 +15,57 @@ body {
 #search-box {
   font: inherit;
   padding: 8px;
-  max-width: 320px;
+  max-width: 500px;
   margin-bottom: 16px;
+  width: 450px;
 }
-/* 
+h2, p {
+  margin: 0;
+  padding: 0;
+}
+p {
+  font-size: 1.5em;
+  margin-left: 10px;
+}
 .country-list {
-  display: flex;
-  flex-direction: row;
-  justify-content: left;
-} */
+  
+ margin: 0;
+ padding: 0;
+}
 .country__title {
   margin: 0;
   padding: 0;
   display: block;
-  font-size: 50px;
+  margin-left: 5px;
+  font-size: 19px;
+
+}
+.head-title{
+  margin: 0;
+ font-size: 28px;
+ margin-left: 10px;
  font-weight: bold;
 }
 .country__card {
   display: flex;
+ align-items: center;
+ max-width: 400px;
+ margin-bottom: 5px;
+}
+.country__head {
+  display: flex;
+}
+.country__head {
+  display: flex;
+  align-items: center;
+}
+.country__info {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+}
+.info {
+  display: flex;
   flex-direction: row;
-  justify-content: center;
+  align-items: center;
 }

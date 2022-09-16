@@ -14,7 +14,7 @@ export default function fetchCountries(country) {
     })
     .catch(error => {
       console.log(error);
-      console.log('mistake');
       Notify.failure(`❌ Oops, there is no country with that name`);
+      //  document.querySelector('.country__card').remove();
     });
 }
