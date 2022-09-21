@@ -16,24 +16,22 @@ input.addEventListener('input', debounce(onInputChange, DEBOUNCE_DELAY));
 function onInputChange(e) {
   e.preventDefault();
   const inp = e.target.value.trim();
-  fetchCountries(inp).then(country => {
-    if (country.length > 10) {
-      Notify.info(
-        ` Too many matches found. Please enter a more specific name.`
-      );
-    } else if (country.length >= 2) {
-      countryList.innerHTML = cardsList(country);
-    } else {
-      countryList.innerHTML = cards(country);
-    }
-  });
-  if (inp == '') {
-    let card = document.querySelectorAll('.country__card');
-    card.forEach(function (key) {
-      key.remove();
+  if (inp != ' ') {
+    fetchCountries(inp).then(country => {
+      if (country.length > 10) {
+        Notify.info(
+          ` Too many matches found. Please enter a more specific name.`
+        );
+        countryList.innerHTML = '';
+      } else if (country.length >= 2) {
+        countryList.innerHTML = cardsList(country);
+      } else {
+        countryList.innerHTML = cards(country);
+      }
     });
   }
 }
+
 // // function createMarkup(obj) {
 // //   console.log(obj);
 // //   return obj.map(
